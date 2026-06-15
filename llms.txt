@@ -77,8 +77,8 @@ Mokshara (pronounced Mók-sha-ra) is an Indian wellness brand founded with the m
 
 ## Contact & Links
 
-- Website: https://mokshara.in
-- Store: https://mokshara.in/store/
+- Website: https://talarijyothi48.github.io/mokshara-store/
+- Store: https://talarijyothi48.github.io/mokshara-store/
 - Currency: INR (Indian Rupees)
 - Languages: English, Hindi
 - Format: Digital eBook (instant download)

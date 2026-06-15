@@ -13,7 +13,7 @@ This document provides the full, unabridged content of the Mokshara Ebook Store 
 **Founded:** 2025
 **Mission:** To make mental health, emotional healing, and personal growth resources accessible and affordable through premium digital ebooks.
 **Slogan:** Healing Minds. Caring Hearts. Enriching Lives.
-**URL:** https://mokshara.in
+**URL:** https://talarijyothi48.github.io/mokshara-store/
 
 ### Brand Pillars
 1. Mental Wellness — Tools for everyday mindfulness and mental health

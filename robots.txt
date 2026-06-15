@@ -101,4 +101,4 @@ Allow: /
 # ============================================================
 # Sitemap
 # ============================================================
-Sitemap: https://mokshara.in/store/sitemap.xml
+Sitemap: https://talarijyothi48.github.io/mokshara-store/sitemap.xml
