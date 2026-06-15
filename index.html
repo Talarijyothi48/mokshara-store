@@ -1364,6 +1364,10 @@
             </div>
 
             <div class="form-group" style="margin-top: 5px;">
+              <label for="qr-amount-paid">Amount Paid (₹)</label>
+              <input type="number" class="form-control" id="qr-amount-paid" placeholder="Enter exact amount paid" required>
+            </div>
+            <div class="form-group" style="margin-top: 5px;">
               <label for="qr-ref-number">Transaction Ref / UTR Number (12-digits)</label>
               <input type="text" class="form-control" id="qr-ref-number" placeholder="Enter 12-digit Ref No." required>
             </div>
@@ -1387,6 +1391,10 @@
               </p>
             </div>
 
+            <div class="form-group" style="margin-top: 5px;">
+              <label for="bank-amount-paid">Amount Paid (₹)</label>
+              <input type="number" class="form-control" id="bank-amount-paid" placeholder="Enter exact amount paid" required>
+            </div>
             <div class="form-group" style="margin-top: 5px;">
               <label for="bank-ref-number">Transaction Ref / UTR Number</label>
               <input type="text" class="form-control" id="bank-ref-number" placeholder="Enter Transaction UTR No." required>
@@ -2354,9 +2362,11 @@
         </div>
       `).join('');
 
-      // Reset reference fields
+      // Reset reference fields and pre-fill amount
       $('qr-ref-number').value = '';
       $('bank-ref-number').value = '';
+      $('qr-amount-paid').value = total;
+      $('bank-amount-paid').value = total;
     }
 
     function closeCheckoutModal() {
@@ -2388,6 +2398,14 @@
     // Confirm QR Payment (instantly unlocks)
     $('btn-submit-qr-pay').addEventListener('click', async () => {
       const refNo = $('qr-ref-number').value.trim();
+      const amountPaidInput = $('qr-amount-paid').value.trim();
+      
+      // Validate inputs
+      if (!amountPaidInput) {
+        alert('Please enter the amount paid.');
+        return;
+      }
+      const amountPaid = parseFloat(amountPaidInput);
       
       // Validate UPI transaction UTR (12 digits)
       if (!/^\d{12}$/.test(refNo)) {
@@ -2395,19 +2413,61 @@
         return;
       }
 
-      await simulateSuccessfulPayment('phonepe_qr', refNo);
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+      
+      // Simulate automatic payment detection loading state
+      const btn = $('btn-submit-qr-pay');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner-btn"></span> Detecting Payment...`;
+      
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        
+        if (amountPaid === total) {
+          simulateSuccessfulPayment('phonepe_qr', refNo);
+        } else {
+          alert('Pay total amount to unlock the books you selected.');
+        }
+      }, 2000);
     });
 
     // Confirm Bank Net Banking Transfer (instantly unlocks)
     $('btn-submit-bank-pay').addEventListener('click', async () => {
       const refNo = $('bank-ref-number').value.trim();
+      const amountPaidInput = $('bank-amount-paid').value.trim();
+      
+      // Validate inputs
+      if (!amountPaidInput) {
+        alert('Please enter the amount paid.');
+        return;
+      }
+      const amountPaid = parseFloat(amountPaidInput);
       
       if (refNo.length < 4) {
         alert('Please enter a valid transaction reference number/ID.');
         return;
       }
 
-      await simulateSuccessfulPayment('bank_transfer', refNo);
+      const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+      // Simulate automatic payment detection loading state
+      const btn = $('btn-submit-bank-pay');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner-btn"></span> Detecting Payment...`;
+      
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+        
+        if (amountPaid === total) {
+          simulateSuccessfulPayment('bank_transfer', refNo);
+        } else {
+          alert('Pay total amount to unlock the books you selected.');
+        }
+      }, 2000);
     });
 
     // Common function to finalize successful transactions (unlocks book to view or download instantly)

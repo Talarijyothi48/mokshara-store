@@ -3184,3 +3184,19 @@ button:focus-visible {
   border-color: var(--teal);
 }
 
+/* Spinner Animation for payment verification */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spinner-btn {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  margin-right: 8px;
+  vertical-align: text-bottom;
+}
+
