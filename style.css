@@ -2163,10 +2163,15 @@ button:focus-visible {
   border: 1px solid rgba(201, 168, 76, 0.15);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  overflow: hidden;
   position: relative;
   z-index: 1050;
   margin: auto;
+  
+  /* Prevent cutting off on short screens */
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 .auth-header {
   display: flex;
@@ -2204,6 +2209,18 @@ button:focus-visible {
 }
 .auth-body {
   padding: var(--space-xl);
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Optimize spacing for short screens */
+@media (max-height: 650px) {
+  .auth-body {
+    padding: var(--space-lg);
+  }
+  .auth-form.active {
+    gap: var(--space-md);
+  }
 }
 .auth-form {
   display: none;
