@@ -1,0 +1,104 @@
+# ============================================================
+# Mokshara Ebook Store — robots.txt
+# Allows all search engine and AI crawlers for maximum visibility
+# ============================================================
+
+# Default: Allow all crawlers
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /checkout/
+Disallow: /api/
+
+# ============================================================
+# AI Crawler Permissions — Explicitly allowed
+# ============================================================
+
+# OpenAI GPTBot
+User-agent: GPTBot
+Allow: /store/
+Allow: /llms.txt
+Allow: /llms-full.txt
+Disallow: /admin/
+
+# OpenAI ChatGPT-User (browsing mode)
+User-agent: ChatGPT-User
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+# Common Crawl (used by many AI models)
+User-agent: CCBot
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+# Google AI (Gemini)
+User-agent: Google-Extended
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+# Anthropic Claude
+User-agent: anthropic-ai
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+# Cohere
+User-agent: cohere-ai
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+User-agent: Meta-ExternalAgent
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+# Apple (AppleBot-Extended for Apple Intelligence)
+User-agent: Applebot-Extended
+Allow: /store/
+Allow: /llms.txt
+Disallow: /admin/
+
+# ============================================================
+# Search Engine Crawlers — Full access
+# ============================================================
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+# ============================================================
+# Sitemap
+# ============================================================
+Sitemap: https://mokshara.in/store/sitemap.xml

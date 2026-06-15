@@ -1,0 +1,485 @@
+/* ============================================================
+   MOKSHARA EBOOK — Shared Print-Ready Stylesheet
+   Brand: Deep Navy (#0a0e1a), Gold (#c9a84c), Teal (#3ab5b0)
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --navy: #0a0e1a;
+  --navy-light: #131b30;
+  --gold: #c9a84c;
+  --gold-light: #dfc06a;
+  --gold-pale: #f5e6b8;
+  --teal: #3ab5b0;
+  --teal-light: #5cd4cf;
+  --text: #e8e0d4;
+  --text-sec: #a8a0b0;
+  --text-muted: #6b6580;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-ui: 'Inter', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { font-size: 18px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--text);
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Page System ---------- */
+.page {
+  width: 100%;
+  max-width: 450px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 40px 36px;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  background: var(--navy);
+}
+
+.page::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--teal), var(--gold));
+  opacity: 0.4;
+}
+
+/* ---------- Cover Page ---------- */
+.cover-page {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+}
+.cover-page img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* ---------- Title Page ---------- */
+.title-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+}
+.title-page .mandala {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 32px;
+  opacity: 0.8;
+}
+.title-page .logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(201,168,76,0.3);
+  margin-bottom: 24px;
+  object-fit: cover;
+}
+.title-page h1 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.title-page .subtitle {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 24px;
+}
+.title-page .tagline {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-sec);
+  font-style: italic;
+  max-width: 320px;
+}
+.title-page .brand {
+  margin-top: 40px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--gold-light);
+}
+.title-page .brand-sub {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ---------- Ornamental Divider ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 28px 0;
+  color: var(--gold);
+  opacity: 0.5;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.divider span { font-size: 1rem; }
+
+/* ---------- TOC Page ---------- */
+.toc-page { text-align: center; }
+.toc-page h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.toc-page .toc-img {
+  width: 180px;
+  margin: 20px auto;
+  border-radius: 12px;
+  opacity: 0.85;
+}
+.toc-list {
+  list-style: none;
+  text-align: left;
+  max-width: 340px;
+  margin: 0 auto;
+}
+.toc-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-sec);
+}
+.toc-list li .num {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-right: 12px;
+  min-width: 24px;
+}
+.toc-list li .title { flex: 1; color: var(--text); }
+.toc-list li .pg { color: var(--text-muted); font-family: var(--font-ui); font-size: 0.7rem; }
+
+/* ---------- Content Pages ---------- */
+.section-label {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 6px;
+  display: block;
+}
+.content-page h2 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+.content-page h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin: 24px 0 10px;
+}
+
+.content-page p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+/* Page illustration */
+.page-illustration {
+  width: 100%;
+  border-radius: 16px;
+  margin: 20px 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  border: 1px solid rgba(201,168,76,0.1);
+}
+
+/* Key points box */
+.key-points {
+  background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(58,181,176,0.05));
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 20px 0;
+}
+.key-points h4 {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.key-points ul {
+  list-style: none;
+  padding: 0;
+}
+.key-points li {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+  padding: 5px 0;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.4;
+}
+.key-points li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.55rem;
+  top: 8px;
+}
+
+/* Science box */
+.science-box {
+  background: rgba(58,181,176,0.06);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 12px 12px 0;
+  padding: 16px 18px;
+  margin: 20px 0;
+}
+.science-box h4 {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 8px;
+}
+.science-box h4::before {
+  content: '🔬 ';
+}
+.science-box p {
+  font-size: 0.9rem;
+  color: var(--text-sec);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Practice box */
+.practice-box {
+  background: rgba(201,168,76,0.06);
+  border: 1px dashed rgba(201,168,76,0.25);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin: 20px 0;
+}
+.practice-box h4 {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.practice-box h4::before {
+  content: '🧘 ';
+}
+.practice-box ol {
+  padding-left: 20px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.practice-box li {
+  padding: 4px 0;
+  line-height: 1.4;
+}
+
+/* Pull quote */
+.pull-quote {
+  text-align: center;
+  padding: 24px 16px;
+  margin: 24px 0;
+  position: relative;
+}
+.pull-quote::before {
+  content: '"';
+  font-family: var(--font-heading);
+  font-size: 4rem;
+  color: rgba(201,168,76,0.15);
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 1;
+}
+.pull-quote p {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--gold-pale);
+  line-height: 1.5;
+}
+.pull-quote cite {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-top: 8px;
+  display: block;
+  font-style: normal;
+}
+
+/* ---------- Cooling Thought ---------- */
+.cooling-thought {
+  margin-top: auto;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(58,181,176,0.08), rgba(201,168,76,0.05));
+  border-radius: 14px;
+  border: 1px solid rgba(58,181,176,0.12);
+  text-align: center;
+  position: relative;
+}
+.cooling-thought::before {
+  content: '🕊️';
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+.cooling-thought-label {
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: block;
+  margin-bottom: 6px;
+}
+.cooling-thought p {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--gold-pale);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ---------- Closing Page ---------- */
+.closing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+}
+.closing-page .lotus {
+  width: 220px;
+  border-radius: 50%;
+  margin-bottom: 28px;
+  opacity: 0.85;
+}
+.closing-page h2 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.closing-page p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text-sec);
+  max-width: 320px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.closing-page .brand-footer {
+  margin-top: 32px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--gold);
+}
+.closing-page .brand-footer small {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ---------- Copyright ---------- */
+.copyright-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 100vh;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  line-height: 1.8;
+}
+.copyright-page .logo-sm {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  margin-bottom: 16px;
+  border: 1px solid rgba(201,168,76,0.2);
+}
+
+/* ---------- Page number ---------- */
+.page-num {
+  position: absolute;
+  bottom: 16px;
+  right: 24px;
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* ---------- Print Styles ---------- */
+@media print {
+  body { background: white; color: #1a1a2e; }
+  .page { max-width: 100%; padding: 0.6in; background: white; }
+  .page::before { display: none; }
+  .cooling-thought { background: #f5f0e8; border-color: #d4c8a0; }
+  .key-points { background: #f5f0e8; }
+  .science-box { background: #eef8f8; }
+  .content-page h2 { color: #8a6d2b; }
+  .content-page h3 { color: #6b5520; }
+  .content-page p { color: #1a1a2e; }
+  .cooling-thought p { color: #6b5520; }
+}
