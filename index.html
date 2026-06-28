@@ -34,6 +34,8 @@
        SEO: Twitter Card
        ============================================================ -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Mokshara7M">
+  <meta name="twitter:creator" content="@Mokshara7M">
   <meta name="twitter:title" content="Mokshara Ebook Store — Premium Mental Wellness & Healing Ebooks">
   <meta name="twitter:description" content="Explore premium ebooks on mental wellness, emotional healing, mindfulness, and personal growth by Mokshara.">
   <meta name="twitter:image" content="https://talarijyothi48.github.io/mokshara-store/assets/logo.png">
@@ -57,6 +59,22 @@
 
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
+  <!-- ============================================================
+       THEME MANAGER — Runs FIRST to prevent FOUC (Flash of Unstyled Content)
+       Must be in <head> and before CSS to set data-theme before first paint
+       ============================================================ -->
+  <script>
+  (function() {
+    var savedTheme = localStorage.getItem('mokshara-theme');
+    var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+    // Update theme-color meta immediately
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0e1a' : '#fdfbf7');
+  })();
+  </script>
+
   <link rel="stylesheet" href="style.css">
 
   <!-- ============================================================
@@ -130,7 +148,7 @@
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
-      "reviewCount": "1000",
+      "reviewCount": "47",
       "bestRating": "5",
       "worstRating": "1"
     }
@@ -177,6 +195,7 @@
     "publisher": { "@type": "Organization", "name": "Mokshara" },
     "bookFormat": "https://schema.org/EBook",
     "inLanguage": "en",
+    "datePublished": "2025-01-01",
     "genre": "Mental Wellness",
     "about": {
       "@type": "Thing",
@@ -223,6 +242,7 @@
     "publisher": { "@type": "Organization", "name": "Mokshara" },
     "bookFormat": "https://schema.org/EBook",
     "inLanguage": "en",
+    "datePublished": "2025-03-01",
     "genre": "Therapy & Healing",
     "about": {
       "@type": "Thing",
@@ -269,6 +289,7 @@
     "publisher": { "@type": "Organization", "name": "Mokshara" },
     "bookFormat": "https://schema.org/EBook",
     "inLanguage": "en",
+    "datePublished": "2025-04-01",
     "genre": "Elderly Care",
     "about": {
       "@type": "Thing",
@@ -315,6 +336,7 @@
     "publisher": { "@type": "Organization", "name": "Mokshara" },
     "bookFormat": "https://schema.org/EBook",
     "inLanguage": "en",
+    "datePublished": "2025-05-01",
     "genre": "Mental Wellness",
     "about": {
       "@type": "Thing",
@@ -355,6 +377,7 @@
     "publisher": { "@type": "Organization", "name": "Mokshara" },
     "bookFormat": "https://schema.org/EBook",
     "inLanguage": "en",
+    "datePublished": "2025-06-01",
     "genre": "Compassion & Support",
     "about": {
       "@type": "Thing",
@@ -395,6 +418,7 @@
     "publisher": { "@type": "Organization", "name": "Mokshara" },
     "bookFormat": "https://schema.org/EBook",
     "inLanguage": "en",
+    "datePublished": "2025-02-01",
     "genre": "Personal Growth",
     "about": {
       "@type": "Thing",
@@ -686,6 +710,9 @@
 
 </head>
 <body>
+
+  <!-- Page Transition Overlay — fades in before navigation to prevent jarring page flash -->
+  <div id="page-transition" aria-hidden="true"></div>
 
   <!-- Skip Navigation (WCAG 2.1 — Bypass Block) -->
   <a href="#main-content" class="skip-link" id="skip-nav">Skip to main content</a>
@@ -1254,11 +1281,12 @@
   <!-- ============================================================
        AUTH MODAL (Sign In / Sign Up)
        ============================================================ -->
-  <div class="modal-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-overlay" id="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="auth-modal-heading" aria-hidden="true">
     <div class="auth-modal-card" id="auth-modal-card">
       <button class="auth-close" id="auth-close" aria-label="Close Authentication Screen">✕</button>
       
       <div class="auth-header">
+        <h2 id="auth-modal-heading" class="sr-only">Sign In or Create Account</h2>
         <button class="auth-tab active" id="tab-signup">Sign Up</button>
         <button class="auth-tab" id="tab-signin">Sign In</button>
       </div>
@@ -1324,10 +1352,10 @@
   <!-- ============================================================
        CHECKOUT MODAL
        ============================================================ -->
-  <div class="modal-overlay" id="checkout-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-overlay" id="checkout-overlay" role="dialog" aria-modal="true" aria-labelledby="checkout-modal-heading" aria-hidden="true">
     <div class="checkout-modal-card" id="checkout-modal-card">
       <div class="checkout-modal-header">
-        <h3 class="checkout-modal-title">Secure Checkout</h3>
+        <h3 class="checkout-modal-title" id="checkout-modal-heading">Secure Checkout</h3>
         <button class="auth-close" id="checkout-close" style="position:static;" aria-label="Close Checkout">✕</button>
       </div>
       
@@ -1623,7 +1651,7 @@
         if (readNowBtn.classList.contains('btn-trigger-auth')) {
           openAuthModal();
         } else if (readNowBtn.dataset.readerUrl) {
-          window.location.href = readNowBtn.dataset.readerUrl;
+          navigateTo(readNowBtn.dataset.readerUrl);
         }
         return;
       }
@@ -1646,13 +1674,13 @@
 
           if (isFree) {
             if (currentUser) {
-              window.location.href = book.readerUrl;
+              navigateTo(book.readerUrl);
             } else {
               openAuthModal();
             }
           } else {
             if (isPurchased) {
-              window.location.href = book.readerUrl;
+              navigateTo(book.readerUrl);
             } else {
               // Open quick view modal for paid/unpurchased ebooks
               openModal(book.id);
@@ -1846,7 +1874,7 @@
 
       if (isFree) {
         if (currentUser) {
-          addBtn.onclick = () => { window.location.href = book.readerUrl; };
+          addBtn.onclick = () => { navigateTo(book.readerUrl); };
           addBtn.setAttribute('aria-label', `Read ${book.title} online`);
           addBtn.innerHTML = 'Read Now ➔';
         } else {
@@ -1856,7 +1884,7 @@
         }
       } else {
         if (isPurchased) {
-          addBtn.onclick = () => { window.location.href = book.readerUrl; };
+          addBtn.onclick = () => { navigateTo(book.readerUrl); };
           addBtn.setAttribute('aria-label', `Read ${book.title} online`);
           addBtn.innerHTML = 'Read Now ➔';
         } else {
@@ -1944,12 +1972,22 @@
     // ================= FREE EBOOK DOWNLOAD =================
     $('btn-download-free').addEventListener('click', () => {
       if (currentUser) {
-        window.location.href = 'ebook/book6-rise-transform.html';
+        navigateTo('ebook/book6-rise-transform.html');
       } else {
         showToast('🔑 Please sign in to read free ebooks');
         openAuthModal();
       }
     });
+
+    // ================= SMOOTH PAGE NAVIGATION =================
+    // Triggers the page-transition overlay before navigating, eliminating jarring page flashes
+    function navigateTo(url) {
+      const overlay = $('page-transition');
+      if (!overlay) { window.location.href = url; return; }
+      overlay.classList.add('active');
+      // Wait for fade-in to complete, then navigate
+      setTimeout(() => { window.location.href = url; }, 360);
+    }
 
     // ================= LOCAL AUTH SYSTEM =================
     // Self-contained auth using localStorage — works instantly, no Firebase config needed.
@@ -1971,13 +2009,15 @@
       const dashboard = $('account-section');
       const sections = document.querySelectorAll('main > section:not(.account-section)');
       if (active) {
+        // Fade out all main sections, then reveal dashboard
+        sections.forEach(sec => sec.classList.add('section-hidden'));
         dashboard.classList.add('active');
-        sections.forEach(sec => sec.style.display = 'none');
         window.scrollTo({ top: 0, behavior: 'smooth' });
         loadPurchases();
       } else {
+        // Fade in main sections, hide dashboard
         dashboard.classList.remove('active');
-        sections.forEach(sec => sec.style.display = '');
+        sections.forEach(sec => sec.classList.remove('section-hidden'));
       }
     }
 
@@ -2684,55 +2724,6 @@
       openAuthModal();
     }
   </script>
-
-<script id="theme-manager">
-(function() {
-  const themeToggle = document.getElementById('theme-toggle');
-  const htmlElement = document.documentElement;
-
-  // Determine initial theme: saved > system preference > dark default
-  const savedTheme = localStorage.getItem('mokshara-theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-
-  function applyTheme(theme) {
-    htmlElement.setAttribute('data-theme', theme);
-    // Update theme-color meta for browser chrome
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-      metaThemeColor.setAttribute('content', theme === 'dark' ? '#0a0e1a' : '#fdfbf7');
-    }
-    // Update toggle text and aria-label
-    if (themeToggle) {
-      const textSpan = themeToggle.querySelector('.theme-toggle-text');
-      if (textSpan) {
-        textSpan.textContent = theme === 'dark' ? 'Dark Mode' : 'Light Mode';
-      }
-      themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-    }
-  }
-
-  // Apply initial theme
-  applyTheme(initialTheme);
-
-  // Toggle on click
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
-      const current = htmlElement.getAttribute('data-theme');
-      const newTheme = current === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('mokshara-theme', newTheme);
-      applyTheme(newTheme);
-    });
-  }
-
-  // Listen for system preference changes (only if user hasn't manually set)
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('mokshara-theme')) {
-      applyTheme(e.matches ? 'dark' : 'light');
-    }
-  });
-})();
-</script>
 
 </body>
 </html>

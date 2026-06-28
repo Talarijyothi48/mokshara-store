@@ -152,7 +152,8 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background var(--transition-med), color var(--transition-med);
+  /* Scoped to background-color only — avoids full-page repaint on theme toggle */
+  transition: background-color var(--transition-med);
 }
 
 ::-webkit-scrollbar {
@@ -3198,5 +3199,94 @@ button:focus-visible {
   animation: spin 0.75s linear infinite;
   margin-right: 8px;
   vertical-align: text-bottom;
+}
+
+/* ============================================================
+   PAGE TRANSITION OVERLAY
+   Smooth fade-out before window.location.href navigation
+   ============================================================ */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--bg-main);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+#page-transition.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ============================================================
+   SECTION VISIBILITY — smooth fade instead of display:none
+   Used by showDashboard() to avoid flickering flash
+   ============================================================ */
+main > section {
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+main > section.section-hidden {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.account-section {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.account-section.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ============================================================
+   PREFERS-REDUCED-MOTION — Accessibility guard
+   Disables all non-essential animations for users who prefer it
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .bg-orbs .orb {
+    animation: none !important;
+  }
+
+  .hero-book-main,
+  .hero-book-secondary {
+    animation: none !important;
+  }
+
+  .particle {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  #page-transition {
+    transition: none !important;
+  }
 }
 
