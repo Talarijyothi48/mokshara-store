@@ -38,7 +38,7 @@ const MERCHANT_UPI_ID = "your-upi-id@upi";
 
 // Store name for payment receipts
 const STORE_NAME = "Mokshara Ebook Store";
-const STORE_LOGO = "https://talarijyothi48.github.io/mokshara-store/assets/logo.png";
+const STORE_LOGO = "https://mokshara.indevs.in/store/assets/logo.png";
 
 // ============================================================
 //  Firebase Initialization

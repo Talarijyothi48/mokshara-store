@@ -1,5 +1,5 @@
 # ============================================================
-# Mokshara Ebook Store — robots.txt
+# Mokshara — robots.txt
 # Allows all search engine and AI crawlers for maximum visibility
 # ============================================================
 
@@ -16,67 +16,67 @@ Disallow: /api/
 
 # OpenAI GPTBot
 User-agent: GPTBot
-Allow: /store/
-Allow: /llms.txt
-Allow: /llms-full.txt
+Allow: /
+Allow: /store/llms.txt
+Allow: /store/llms-full.txt
 Disallow: /admin/
 
 # OpenAI ChatGPT-User (browsing mode)
 User-agent: ChatGPT-User
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 # Common Crawl (used by many AI models)
 User-agent: CCBot
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 # Google AI (Gemini)
 User-agent: Google-Extended
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 # Anthropic Claude
 User-agent: anthropic-ai
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 User-agent: ClaudeBot
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 # Perplexity AI
 User-agent: PerplexityBot
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 # Cohere
 User-agent: cohere-ai
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 # Meta AI
 User-agent: FacebookBot
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 User-agent: Meta-ExternalAgent
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 # Apple (AppleBot-Extended for Apple Intelligence)
 User-agent: Applebot-Extended
-Allow: /store/
-Allow: /llms.txt
+Allow: /
+Allow: /store/llms.txt
 Disallow: /admin/
 
 # ============================================================
@@ -101,4 +101,4 @@ Allow: /
 # ============================================================
 # Sitemap
 # ============================================================
-Sitemap: https://talarijyothi48.github.io/mokshara-store/sitemap.xml
+Sitemap: https://mokshara.indevs.in/sitemap.xml
