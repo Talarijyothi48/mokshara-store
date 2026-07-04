@@ -28,6 +28,19 @@
     </image:image>
   </url>
 
+  <!-- Blog Landing Page -->
+  <url>
+    <loc>https://mokshara.indevs.in/blog/</loc>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://mokshara.indevs.in/assets/logo_11zon.jpeg</image:loc>
+      <image:title>Mokshara Blog</image:title>
+      <image:caption>The Mokshara Blog — Vetted Insights &amp; Caregiver Guides</image:caption>
+    </image:image>
+  </url>
+
   <!-- Article 1: Caregiver Burnout -->
   <url>
     <loc>https://mokshara.indevs.in/2026/06/caregiver-burnout-signs.html</loc>
@@ -83,6 +96,63 @@
   <!-- Article 5: Mokshara Mission -->
   <url>
     <loc>https://mokshara.indevs.in/2026/06/mokshara-mission.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://mokshara.indevs.in/assets/mission_ebook_sunset.jpeg</image:loc>
+      <image:title>Mokshara Mission</image:title>
+      <image:caption>4 Secrets Behind Our Science-Backed Mental Health Mission</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Clean Blog URLs -->
+  <url>
+    <loc>https://mokshara.indevs.in/blog/caregiver-burnout-signs.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://mokshara.indevs.in/assets/hero-caregiver-burnout.jpeg</image:loc>
+      <image:title>Caregiver Burnout signs</image:title>
+      <image:caption>Caregiver Burnout: 7 Science-Backed Signs</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mokshara.indevs.in/blog/ai-mental-health-2026.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://mokshara.indevs.in/assets/hero-ai-mental-health.jpeg</image:loc>
+      <image:title>AI in Mental Health Support</image:title>
+      <image:caption>Is AI the Future of Mental Health Support?</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mokshara.indevs.in/blog/cognitive-resilience-after-60.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://mokshara.indevs.in/assets/hero-cognitive-resilience.jpeg</image:loc>
+      <image:title>Cognitive Resilience in Seniors</image:title>
+      <image:caption>Building Cognitive Resilience in Seniors</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mokshara.indevs.in/blog/preventive-long-term-care-planning.html</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://mokshara.indevs.in/assets/hero-preventive-care-planning.jpeg</image:loc>
+      <image:title>Preventive Care Planning</image:title>
+      <image:caption>Preventive Care Planning: The 5-Phase Plan</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://mokshara.indevs.in/blog/mokshara-mission.html</loc>
     <lastmod>2026-06-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

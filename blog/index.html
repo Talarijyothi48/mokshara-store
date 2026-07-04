@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Mokshara Blog — Vetted Insights &amp; Caregiver Guides</title>
+  <meta name="description" content="Explore science-backed articles on neuroscience, caregiver burnout recovery, elder care, and family mental wellness. Vetted by our clinical experts.">
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700&amp;family=Libre+Baskerville:ital,wght@0,400;0,700&amp;display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================================
+       BRAND DESIGN SYSTEM AND TOKENS (Vanilla CSS)
+       ============================================================ */
+    :root {
+      /* Palette */
+      --midnight-bg: #050C1A;
+      --midnight-card: #0A1128;
+      --glowing-teal: #00F2FE;
+      --soft-cyan: #48CAE4;
+      --warm-gold: #D4AF37;
+      --warm-amber: #FFB703;
+      --text-light: #F8F9FA;
+      --text-muted: #A0AEC0;
+      --border-glow: rgba(0, 242, 254, 0.15);
+      --border-gold: rgba(212, 175, 55, 0.2);
+      
+      /* Typography */
+      --font-headings: 'Playfair Display', Georgia, serif;
+      --font-body: 'Libre Baskerville', Georgia, serif;
+      --font-ui: 'Inter', sans-serif;
+    }
+
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--midnight-bg);
+      color: var(--text-light);
+      font-family: var(--font-ui);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Orbs */
+    .bg-glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      z-index: 1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .orb-1 {
+      top: 10%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: var(--glowing-teal);
+    }
+    .orb-2 {
+      top: 40%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: var(--warm-amber);
+    }
+    .orb-3 {
+      bottom: 10%;
+      left: 15%;
+      width: 450px;
+      height: 450px;
+      background: var(--glowing-teal);
+    }
+
+    /* ============================================================
+       NAVIGATION HEADER
+       ============================================================ */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(5, 12, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-gold);
+      z-index: 1000;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      gap: 0.8rem;
+    }
+
+    .brand-logo img {
+      height: 40px;
+      border-radius: 6px;
+      border: 1px solid var(--warm-gold);
+    }
+
+    .brand-name {
+      font-family: var(--font-headings);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--warm-gold);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--glowing-teal);
+    }
+
+    .nav-cta-btn {
+      background: linear-gradient(135deg, var(--glowing-teal), var(--soft-cyan));
+      color: var(--midnight-bg) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 4px;
+      box-shadow: 0 4px 15px rgba(0, 242, 254, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .nav-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 242, 254, 0.4);
+    }
+
+    /* ============================================================
+       HERO SECTION
+       ============================================================ */
+    .hero-section {
+      padding: 180px 2rem 80px;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid var(--warm-gold);
+      color: var(--warm-gold);
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-headings);
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      line-height: 1.2;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--glowing-teal);
+      text-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    /* ============================================================
+       BLOG ARTICLES SECTION
+       ============================================================ */
+    .blog-section {
+      padding: 20px 2rem 100px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .blog-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+
+    .blog-card {
+      background: var(--midnight-card);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-gold);
+    }
+
+    .blog-card-image {
+      position: relative;
+      height: 230px;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .blog-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .blog-card:hover .blog-card-image img {
+      transform: scale(1.05);
+    }
+
+    .blog-card-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--midnight-bg);
+      border: 1px solid var(--warm-gold);
+      color: var(--warm-gold);
+      padding: 0.2rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .blog-card-body {
+      padding: 2.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .blog-card-title {
+      font-family: var(--font-headings);
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.35;
+    }
+
+    .blog-card-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.8rem;
+    }
+
+    .blog-card-link {
+      margin-top: auto;
+      text-decoration: none;
+      color: var(--glowing-teal);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.3s ease;
+    }
+
+    .blog-card-link:hover {
+      color: #fff;
+    }
+
+    /* ============================================================
+       FOOTER AND CONTACT SECTION
+       ============================================================ */
+    footer {
+      background: #020610;
+      border-top: 1px solid var(--border-gold);
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-about h3 {
+      font-family: var(--font-headings);
+      font-size: 1.8rem;
+      color: var(--warm-gold);
+      margin-bottom: 1rem;
+    }
+
+    .footer-about p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-contact h4 {
+      font-family: var(--font-headings);
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+      color: var(--text-light);
+    }
+
+    .contact-item a {
+      color: var(--glowing-teal);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .contact-item a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      list-style: none;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-light);
+      padding: 0.6rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      letter-spacing: 0.05em;
+    }
+
+    .social-links a:hover {
+      background: var(--warm-gold);
+      color: var(--midnight-bg);
+      border-color: var(--warm-gold);
+      transform: translateY(-2px);
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 992px) {
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Orbs -->
+  <div class="bg-glow-orb orb-1"></div>
+  <div class="bg-glow-orb orb-2"></div>
+  <div class="bg-glow-orb orb-3"></div>
+
+  <!-- ============================================================
+       NAVIGATION HEADER
+       ============================================================ -->
+  <header>
+    <div class="nav-container">
+      <a href="/" class="brand-logo">
+        <img src="/assets/logo_11zon.jpeg" alt="Mokshara Logo">
+        <span class="brand-name">M&#243;kshara</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#mission">About Mission</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/store/">Ebook Store</a></li>
+        <li><a href="/store/" class="nav-cta-btn">Buy Ebooks</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO SECTION
+       ============================================================ -->
+  <section class="hero-section">
+    <div class="hero-badge">Clinical &amp; Compassionate Wisdom</div>
+    <h1 class="hero-title">The M&#243;kshara <em>Blog</em></h1>
+    <p class="hero-desc">
+      Explore expert articles, clinical research summaries, and compassionate roadmaps 
+      designed to help you navigate elder care, cognitive health, and caregiver wellbeing.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       BLOG ARTICLES SECTION
+       ============================================================ -->
+  <section class="blog-section">
+    <div class="blog-grid">
+      <!-- Article 1 -->
+      <article class="blog-card">
+        <div class="blog-card-image">
+          <img src="/assets/hero-caregiver-burnout.jpeg" alt="Caregiver Burnout Signs">
+          <span class="blog-card-badge">Eldercare</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">✍️ By Jyothi Talari · 3 Min Read</div>
+          <h3 class="blog-card-title">Caregiver Burnout: 7 Science-Backed Signs</h3>
+          <p class="blog-card-desc">
+            Discover the 7 neuroscience-backed signs of caregiver burnout and proven recovery strategies. Vetted by clinical experts.
+          </p>
+          <a href="/blog/caregiver-burnout-signs.html" class="blog-card-link">Read Article ➔</a>
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="blog-card">
+        <div class="blog-card-image">
+          <img src="/assets/hero-ai-mental-health.jpeg" alt="AI in Mental Health">
+          <span class="blog-card-badge">AI Wellness</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">✍️ By Editorial Board · 4 Min Read</div>
+          <h3 class="blog-card-title">Is AI the Future of Mental Health Support?</h3>
+          <p class="blog-card-desc">
+            An in-depth review of emerging AI therapy tools, analyzing privacy, clinical safety boundaries, and the human touch.
+          </p>
+          <a href="/blog/ai-mental-health-2026.html" class="blog-card-link">Read Article ➔</a>
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="blog-card">
+        <div class="blog-card-image">
+          <img src="/assets/hero-cognitive-resilience.jpeg" alt="Cognitive Resilience">
+          <span class="blog-card-badge">Wellness</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">✍️ By Jyothi Talari · 3 Min Read</div>
+          <h3 class="blog-card-title">Building Cognitive Resilience in Seniors</h3>
+          <p class="blog-card-desc">
+            Vetted strategies on how neuroplasticity, regular sensory activities, and exercise slow cognitive decline in elders.
+          </p>
+          <a href="/blog/cognitive-resilience-after-60.html" class="blog-card-link">Read Article ➔</a>
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="blog-card">
+        <div class="blog-card-image">
+          <img src="/assets/hero-preventive-care-planning.jpeg" alt="Preventive Care Planning">
+          <span class="blog-card-badge">Family Care</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">✍️ By Editorial Board · 4 Min Read</div>
+          <h3 class="blog-card-title">Preventive Care Planning: A Family Roadmap</h3>
+          <p class="blog-card-desc">
+            How to proactively plan for aging, medical decisions, and long-term care collectively as a compassionate family unit.
+          </p>
+          <a href="/blog/preventive-long-term-care-planning.html" class="blog-card-link">Read Article ➔</a>
+        </div>
+      </article>
+
+      <!-- Article 5 -->
+      <article class="blog-card">
+        <div class="blog-card-image">
+          <img src="/assets/mission_family_laugh.jpeg" alt="Mokshara Mission">
+          <span class="blog-card-badge">Our Story</span>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">✍️ By Devi &amp; Jyothi · 3 Min Read</div>
+          <h3 class="blog-card-title">The Mokshara Mission: Bridging Science and Compassion</h3>
+          <p class="blog-card-desc">
+            Explore the story of Mokshara, why Western wellness apps fail Indian caregiving structures, and our path forward.
+          </p>
+          <a href="/blog/mokshara-mission.html" class="blog-card-link">Read Article ➔</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER AND CONTACT SECTION
+       ============================================================ -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>M&#243;kshara</h3>
+        <p>
+          M&#243;kshara is a premium Indian wellness brand specializing in mental wellness, 
+          mindfulness, therapy, and compassionate senior care. Our guides translate clinical 
+          neurobiology into daily pathways of calm and restoration.
+        </p>
+        <p>📧 Email: <a href="mailto:support@mokshara.com" style="color: var(--glowing-teal); text-decoration: none;">support@mokshara.com</a></p>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect &amp; Follow</h4>
+        <p>Follow our ambassadors Devi &amp; Jyothi for daily grounding routines and care strategies:</p>
+        <ul class="social-links">
+          <li><a href="https://www.linkedin.com/in/mokshara--wellness" target="_blank"><svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/@Mokshara7M" target="_blank"><svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" style="width: 16px; height: 16px; margin-right: 8px; vertical-align: middle;"><path d="M23.498 6.163c-.06-.581-.215-1.14-.454-1.67a3.003 3.003 0 0 0-2.11-2.108C19.08 2 12 2 12 2s-7.08 0-8.934.385a3.003 3.003 0 0 0-2.11 2.108c-.239.53-.394 1.09-.454 1.67C0 7.96 0 12 0 12s0 4.04.502 6.163c.06.581.215 1.14.454 1.67a3.003 3.003 0 0 0 2.11 2.108C4.92 22 12 22 12 22s7.08 0 8.934-.385a3.003 3.003 0 0 0 2.11-2.108c.239-.53.394-1.09.454-1.67C24 16.04 24 12 24 12s0-4.04-.502-6.163zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &#169; 2026 M&#243;kshara. All Rights Reserved. For educational and caregiver support purposes only. Not a substitute for medical or clinical therapy advice.
+    </div>
+  </footer>
+
+</body>
+</html>
