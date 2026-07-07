@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>{{TITLE}} | Mókshara</title>
+  <meta content="{{META_DESCRIPTION}}" name="description"/>
+  <meta content="{{KEYWORDS}}" name="keywords"/>
+  <meta content="index, follow" name="robots"/>
+  
+  <!-- Open Graph Tags -->
+  <meta content="{{TITLE}} | Mókshara" property="og:title"/>
+  <meta content="{{META_DESCRIPTION}}" property="og:description"/>
+  <meta content="article" property="og:type"/>
+  <meta content="https://mokshara.indevs.in/blog/{{SLUG}}.html" property="og:url"/>
+  <meta content="{{HERO_IMAGE}}" property="og:image"/>
+  
+  <!-- Twitter Card Tags -->
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="{{TITLE}} | Mókshara" name="twitter:title"/>
+  <meta content="{{META_DESCRIPTION}}" name="twitter:description"/>
+  <meta content="{{HERO_IMAGE}}" name="twitter:image"/>
+  <link href="https://mokshara.indevs.in/blog/{{SLUG}}.html" rel="canonical"/>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": "/blog/{{SLUG}}.html#article",
+        "isPartOf": {
+          "@type": "WebPage",
+          "@id": "/blog/{{SLUG}}.html"
+        },
+        "headline": "{{TITLE}}",
+        "description": "{{META_DESCRIPTION}}",
+        "inLanguage": "en-US",
+        "mainEntityOfPage": "/blog/{{SLUG}}.html",
+        "datePublished": "{{DATE_PUBLISHED}}T08:00:00+05:30",
+        "dateModified": "{{DATE_MODIFIED}}T12:00:00+05:30",
+        "author": {
+          "@type": "Person",
+          "name": "{{AUTHOR}}",
+          "url": "https://mokshara.indevs.in"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Mókshara",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "/logo.png"
+          }
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": "{{HERO_IMAGE}}"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --teal: #008080;
+      --teal-light: #009999;
+      --teal-dark: #004d4d;
+      --teal-bg: rgba(0, 128, 128, 0.05);
+      --teal-glow: rgba(0, 128, 128, 0.15);
+      --gold: #D4AF37;
+      --gold-light: #e1c463;
+      --gold-dark: #aa8620;
+      --gold-bg: rgba(212, 175, 55, 0.08);
+      --navy: #000080;
+      --navy-dark: #00004d;
+      --navy-bg: #000022;
+      --cream: #FAF8F2;
+      --cream-dark: #f5eed8;
+      --white: #ffffff;
+      --text: #1A1A2E;
+      --text-muted: #5a5a75;
+      --text-light: #ffffff;
+      --border: rgba(0, 128, 128, 0.12);
+      --border-gold: rgba(212, 175, 55, 0.2);
+      --shadow: 0 4px 20px rgba(0, 128, 128, 0.04);
+      --shadow-hover: 0 12px 30px rgba(0, 128, 128, 0.1);
+      --font-brand: 'Playfair Display', serif;
+      --font-heading: 'Libre Baskerville', serif;
+      --font-body: 'Source Serif 4', Georgia, serif;
+      --font-ui: 'Inter', sans-serif;
+      --transition: all 0.3s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.85;
+      overflow-x: hidden;
+    }
+
+    /* HEADER NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(0, 0, 34, 0.96);
+      backdrop-filter: blur(12px);
+      padding: 1.2rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border-gold);
+    }
+    .nav-brand {
+      font-family: var(--font-brand);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo-img {
+      height: 35px;
+      width: auto;
+      margin-right: 12px;
+      vertical-align: middle;
+      border-radius: 4px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { 
+      color: rgba(255,255,255,0.85); 
+      text-decoration: none; 
+      font-size: 0.8rem; 
+      font-family: var(--font-ui);
+      font-weight: 600;
+      letter-spacing: 0.12em; 
+      text-transform: uppercase; 
+      transition: color 0.3s ease; 
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: white !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      border: 1px solid var(--teal-light);
+      box-shadow: 0 4px 10px rgba(0, 128, 128, 0.2);
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 15px rgba(0, 128, 128, 0.3);
+    }
+    .nav-back-arrow {
+      color: var(--gold) !important;
+      font-size: 1.8rem !important;
+      text-decoration: none !important;
+      margin-right: 15px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      font-weight: bold !important;
+      line-height: 1 !important;
+      cursor: pointer !important;
+      outline: none !important;
+    }
+    .nav-menu-toggle {
+      background: none !important;
+      border: none !important;
+      color: var(--gold) !important;
+      font-size: 1.8rem !important;
+      cursor: pointer !important;
+      padding: 0 !important;
+      margin-right: 18px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      line-height: 1 !important;
+      outline: none !important;
+      transition: transform 0.2s ease !important;
+    }
+    .nav-menu-toggle:hover {
+      transform: scale(1.1) !important;
+    }
+
+    /* Full Screen Menu Overlay Styles */
+    .nav-menu-overlay {
+      position: fixed !important;
+      inset: 0 !important;
+      background: #000022 !important;
+      color: #ffffff !important;
+      z-index: 15000 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      padding: 2rem 3rem !important;
+      overflow-y: auto !important;
+    }
+    .nav-menu-overlay.active {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+    .overlay-header {
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15) !important;
+      padding-bottom: 1.2rem !important;
+      margin-bottom: 2.5rem !important;
+      width: 100% !important;
+    }
+    .overlay-brand {
+      font-family: 'Playfair Display', Georgia, serif !important;
+      font-size: 1.8rem !important;
+      color: #D4AF37 !important;
+      font-weight: bold !important;
+      letter-spacing: 0.05em !important;
+    }
+    .overlay-back-btn, .overlay-close-btn {
+      background: none !important;
+      border: none !important;
+      color: #D4AF37 !important;
+      font-size: 2rem !important;
+      cursor: pointer !important;
+      line-height: 1 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 0.5rem !important;
+      transition: color 0.3s ease, transform 0.2s ease !important;
+    }
+    .overlay-back-btn:hover, .overlay-close-btn:hover {
+      color: #ffffff !important;
+      transform: scale(1.1) !important;
+    }
+    .overlay-content {
+      display: grid !important;
+      grid-template-columns: 1fr 1.8fr !important;
+      gap: 4rem !important;
+      max-width: 1200px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      flex-grow: 1 !important;
+    }
+    .overlay-links-section h3, .overlay-founders-section h3 {
+      font-family: 'Playfair Display', Georgia, serif !important;
+      font-size: 1.35rem !important;
+      color: #D4AF37 !important;
+      margin-bottom: 1.8rem !important;
+      border-bottom: 1px solid rgba(0, 128, 128, 0.2) !important;
+      padding-bottom: 0.6rem !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+    }
+    .overlay-menu-links {
+      list-style: none !important;
+      padding: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 1.5rem !important;
+    }
+    .overlay-menu-links a {
+      color: rgba(255, 255, 255, 0.9) !important;
+      text-decoration: none !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      transition: color 0.3s ease, padding-left 0.3s ease !important;
+      display: block !important;
+    }
+    .overlay-menu-links a:hover {
+      color: #D4AF37 !important;
+      padding-left: 8px !important;
+    }
+    .overlay-cta {
+      background: linear-gradient(135deg, #008080, #004d4d) !important;
+      color: #ffffff !important;
+      text-align: center !important;
+      padding: 0.8rem !important;
+      border-radius: 6px !important;
+      border: 1px solid #009999 !important;
+      margin-top: 1rem !important;
+    }
+    .overlay-cta:hover {
+      padding-left: 0 !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 4px 15px rgba(0, 128, 128, 0.3) !important;
+    }
+    .overlay-founder-profiles {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 2rem !important;
+    }
+    .overlay-founder-card {
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(212, 175, 55, 0.1) !important;
+      border-radius: 12px !important;
+      padding: 1.8rem 1.5rem !important;
+      text-align: center !important;
+    }
+    .overlay-avatar-container {
+      width: 90px !important;
+      height: 90px !important;
+      margin: 0 auto 0.8rem !important;
+      border-radius: 50% !important;
+      border: 3px solid #D4AF37 !important;
+      overflow: hidden !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    }
+    .overlay-avatar {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      object-position: center 20% !important;
+    }
+    .overlay-founder-card h4 {
+      font-family: 'Libre Baskerville', Georgia, serif !important;
+      font-size: 1.15rem !important;
+      color: #ffffff !important;
+      margin: 0.4rem 0 0.2rem !important;
+    }
+    .overlay-role {
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      color: #008080 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 0.08em !important;
+      display: block !important;
+      margin-bottom: 0.8rem !important;
+    }
+    .overlay-founder-card p {
+      font-family: 'Source Serif 4', Georgia, serif !important;
+      font-size: 0.85rem !important;
+      line-height: 1.55 !important;
+      color: rgba(255, 255, 255, 0.7) !important;
+      text-align: left !important;
+      margin: 0 !important;
+    }
+    .overlay-linkedin-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: #0077b5 !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      padding: 0.6rem 2.2rem !important;
+      border-radius: 4px !important;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      transition: background 0.3s ease !important;
+      margin-top: 1.5rem !important;
+    }
+    .overlay-linkedin-btn:hover {
+      background: #005a87 !important;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      background: linear-gradient(135deg, var(--navy-bg) 0%, #050d24 60%, #002222 100%);
+      display: flex; align-items: center; justify-content: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(0,128,128,0.15) 0%, transparent 80%);
+    }
+    .hero-particles { position: absolute; inset: 0; pointer-events: none; }
+    .particle {
+      position: absolute; width: 3px; height: 3px;
+      background: var(--gold); border-radius: 50%;
+      animation: float-up linear infinite; opacity: 0;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.5; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+    .hero-container {
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+    .hero-left { text-align: left; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold-bg);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .hero h1 {
+      font-family: var(--font-brand);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+    }
+    .hero-meta {
+      display: flex; gap: 2rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      font-family: var(--font-ui);
+      letter-spacing: 0.05em;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 0.5rem; }
+    .hero-meta span::before { content: '✦'; color: var(--gold); }
+    
+    .hero-right {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-frame {
+      width: 100%;
+      max-width: 460px;
+      border-radius: 16px;
+      padding: 6px;
+      background: linear-gradient(135deg, var(--gold), var(--teal));
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .hero-frame img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    /* MAIN LAYOUT */
+    .layout-container {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: minmax(0, 780px) 280px;
+      gap: 4rem;
+      padding: 5rem 2rem;
+    }
+    
+    /* AEO ANSWER CARD */
+    .aeo-answer-card {
+      background: var(--cream-dark);
+      border-left: 4px solid var(--gold);
+      padding: 1.5rem 1.8rem;
+      margin: 1.5rem 0 2rem;
+      border-radius: 0 12px 12px 0;
+      box-shadow: var(--shadow);
+    }
+    .aeo-label {
+      display: inline-block;
+      background: var(--teal);
+      color: white;
+      font-size: 0.68rem;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+    .aeo-text {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.6;
+      color: var(--navy-bg);
+      margin: 0;
+    }
+
+    /* ARTICLE CONTENT */
+    article h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3vw, 2.2rem);
+      color: var(--navy-bg);
+      margin: 4.5rem 0 1.5rem;
+      line-height: 1.3;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    article h2:first-of-type { margin-top: 2rem; }
+    article h2::after {
+      content: '';
+      display: block; width: 60px; height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      margin-top: 0.6rem; border-radius: 2px;
+    }
+    article h3 {
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      color: var(--teal-dark);
+      margin: 2.2rem 0 0.8rem;
+    }
+    article p { margin-bottom: 1.6rem; font-size: 1.1rem; color: var(--text); }
+    article p strong { color: var(--navy-bg); }
+
+    /* DROP CAP */
+    .drop-cap::first-letter {
+      float: left;
+      font-family: var(--font-brand);
+      font-size: 4.2rem;
+      line-height: 0.8;
+      padding: 0.08em 0.12em 0 0;
+      color: var(--teal-dark);
+      font-weight: 700;
+    }
+
+    /* LEAD SUMMARY */
+    .lead-summary {
+      font-size: 1.18rem;
+      font-weight: 500;
+      line-height: 1.7;
+      color: var(--text-muted);
+      border-left: 3px solid var(--gold);
+      padding-left: 1.5rem;
+      margin: 0 0 2rem;
+      font-style: italic;
+    }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 4rem 0 1rem;
+      color: var(--gold);
+      font-size: 0.6rem;
+      letter-spacing: 0.5em;
+      opacity: 0.5;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-gold), transparent);
+    }
+
+    /* EDITORIAL INLINE IMAGES */
+    .article-visual {
+      margin: 3rem -2rem;
+      width: calc(100% + 4rem);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+    .article-visual img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+    .article-visual figcaption {
+      padding: 0.8rem 1.5rem;
+      background: var(--cream-dark);
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+      border-top: 2px solid var(--gold);
+    }
+
+    /* FAQ ACCORDION */
+    .faq-section { margin: 4rem 0; }
+    .faq-container { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    .faq-trigger {
+      width: 100%; text-align: left;
+      background: none; border: none;
+      padding: 1.5rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--navy-bg);
+    }
+    .faq-trigger::after {
+      content: '+';
+      font-size: 1.5rem; font-family: var(--font-ui);
+      color: var(--teal); font-weight: 300;
+      transition: transform 0.3s;
+    }
+    .faq-item.active { border-color: var(--border-gold); }
+    .faq-item.active .faq-trigger::after { transform: rotate(45deg); }
+    .faq-content {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .faq-content-inner {
+      padding: 0 2rem 1.8rem;
+      font-size: 1rem; color: var(--text-muted);
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      display: flex; flex-direction: column; gap: 2.5rem;
+      position: sticky;
+      top: 5.5rem;
+      align-self: start;
+    }
+    .sidebar-widget {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.2rem;
+      box-shadow: var(--shadow);
+    }
+    .widget-title {
+      font-family: var(--font-brand);
+      font-size: 1.25rem; color: var(--navy-bg);
+      margin-bottom: 1.5rem; border-bottom: 2px solid var(--teal-bg);
+      padding-bottom: 0.5rem;
+    }
+    .author-widget { text-align: center; }
+    .author-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      margin: 0 auto 0.6rem; border: 3px solid var(--gold);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .author-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+    .author-name {
+      font-family: var(--font-heading);
+      font-size: 1.15rem; color: var(--navy-bg);
+      font-weight: 700; margin: 0.2rem 0;
+    }
+    .author-title {
+      font-family: var(--font-ui);
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--teal); text-transform: uppercase;
+      letter-spacing: 0.08em; display: block;
+      margin-bottom: 0.5rem;
+    }
+    .author-bio { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; text-align: left; }
+    
+    .popular-posts { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+    .popular-posts a {
+      text-decoration: none; color: var(--text);
+      font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600;
+      line-height: 1.4; display: block;
+      transition: color 0.3s;
+    }
+    .popular-posts a:hover { color: var(--teal); }
+    .popular-posts span {
+      font-size: 0.72rem; color: var(--text-muted);
+      font-family: var(--font-ui); display: block; margin-top: 0.3rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy-bg);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      font-size: 0.88rem;
+      border-top: 2px solid var(--gold);
+      font-family: var(--font-ui);
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 4rem;
+      text-align: left;
+    }
+    .footer-about h3 {
+      font-family: var(--font-brand);
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .footer-about p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .footer-contact h4 {
+      font-family: var(--font-brand);
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 1.2rem;
+    }
+    .social-links {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      list-style: none;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-light);
+      padding: 0.6rem 1.4rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      letter-spacing: 0.05em;
+    }
+    .social-links a:hover {
+      background: var(--gold);
+      color: var(--navy-bg);
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .copyright {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* CSS for Footer Modals */
+    .footer-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 34, 0.75);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 1.5rem;
+    }
+    .footer-modal-overlay.active {
+      opacity: 1;
+    }
+    .footer-modal-card {
+      background: #FAF8F2;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 600px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+      font-family: 'Source Serif 4', Georgia, serif;
+      color: #1A1A2E;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    .footer-modal-overlay.active .footer-modal-card {
+      transform: scale(1);
+    }
+    .footer-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #5a5a75;
+      transition: color 0.3s ease;
+      line-height: 1;
+    }
+    .footer-modal-close:hover {
+      color: #D4AF37;
+    }
+    .footer-modal-body h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.8rem;
+      color: #000022;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(0, 128, 128, 0.15);
+      padding-bottom: 0.8rem;
+    }
+    .footer-modal-body p {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #5a5a75;
+      margin-bottom: 1rem;
+    }
+    .footer-modal-body ul {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      color: #5a5a75;
+    }
+    .footer-modal-body li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+    
+    /* Helpfulness Widget */
+    .helpfulness-widget {
+      background: var(--white);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 2.2rem 2.5rem;
+      margin: 4rem 0;
+      box-shadow: var(--shadow);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .helpfulness-widget::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+    }
+    .helpfulness-widget h4 {
+      font-family: var(--font-heading);
+      color: var(--navy-bg);
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+    }
+    .helpfulness-widget p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.8rem;
+      line-height: 1.6;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .like-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .like-btn {
+      background: var(--cream);
+      border: 1px solid var(--border-gold);
+      padding: 0.8rem 2.2rem;
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: var(--font-ui);
+      font-weight: 700;
+      color: var(--navy-bg);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.1);
+    }
+    .like-btn:hover {
+      background: var(--gold-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.2);
+    }
+    .like-btn.liked {
+      background: rgba(224, 36, 94, 0.08) !important;
+      border-color: #e0245e !important;
+      color: #e0245e !important;
+      box-shadow: 0 6px 18px rgba(224, 36, 94, 0.15) !important;
+    }
+    .like-btn.liked .heart-icon {
+      color: #e0245e !important;
+    }
+    .like-btn .heart-icon::before {
+      content: '♡';
+      font-size: 1.25rem;
+    }
+    .like-btn.liked .heart-icon::before {
+      content: '♥';
+    }
+    .like-counter {
+      font-family: var(--font-ui);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--teal-dark);
+    }
+    
+    /* Scroll Reveal & Micro-animations */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s cubic-bezier(0.25,0.8,0.25,1), transform 0.7s cubic-bezier(0.25,0.8,0.25,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.95); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    
+    /* Responsive Adaptations */
+    @media (max-width: 1200px) {
+      .layout-container { grid-template-columns: 1fr; gap: 4rem; }
+      .sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 992px) {
+      .hero-container { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+      .hero-left { text-align: center; }
+      .hero-meta { justify-content: center; }
+      .hero-right { order: -1; }
+      .hero-frame { max-width: 500px; margin: 0 auto; }
+      .footer-container { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 768px) {
+      .sidebar { grid-template-columns: 1fr; }
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { display: none; }
+      .drop-cap::first-letter { font-size: 3rem; }
+      .article-visual { margin: 2rem 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Nav Header -->
+  <nav>
+    <div style="display: flex; align-items: center;">
+      <button class="nav-menu-toggle" aria-label="Toggle Navigation">☰</button>
+      <a href="/" class="nav-brand">
+        <img src="/assets/logo_11zon.jpeg" alt="Mókshara Logo" class="nav-logo-img">
+        <span>Mókshara</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#mission">About Mission</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/store/">Ebook Store</a></li>
+      <li><a href="/store/" class="nav-cta">Buy Ebooks</a></li>
+    </ul>
+  </nav>
+
+  <!-- Full Screen Menu Overlay -->
+  <div id="navMenuOverlay" class="nav-menu-overlay" style="display:none;">
+    <div class="overlay-header">
+      <button class="overlay-back-btn" id="overlayCloseBtn" aria-label="Go Back">←</button>
+      <span class="overlay-brand">Mókshara</span>
+      <button class="overlay-close-btn" id="overlayCloseBtnX" aria-label="Close menu">&times;</button>
+    </div>
+    
+    <div class="overlay-content">
+      <div class="overlay-links-section">
+        <h3>Navigation</h3>
+        <ul class="overlay-menu-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/store/">Ebook Store</a></li>
+          <li><a href="/#mission" class="nav-about-link">About Our Mission</a></li>
+          <li><a href="/store/" class="overlay-cta">Buy eBooks</a></li>
+        </ul>
+      </div>
+      
+      <div class="overlay-founders-section">
+        <h3>About the Founders</h3>
+        <div class="overlay-founder-profiles">
+          <div class="overlay-founder-card">
+            <div class="overlay-avatar-container">
+              <img src="/assets/jyothi.jpeg" alt="Jyothi Talari" class="overlay-avatar">
+            </div>
+            <h4>Jyothi Talari</h4>
+            <span class="overlay-role">Founder & Wellness Practitioner</span>
+            <p>Jyothi combines neuroscience research with practical caregiving insights to help families navigate mental wellness, elderly care, and burnout recovery.</p>
+          </div>
+          
+          <div class="overlay-founder-card">
+            <div class="overlay-avatar-container">
+              <img src="/assets/devi.jpeg" alt="Devi" class="overlay-avatar">
+            </div>
+            <h4>Devi</h4>
+            <span class="overlay-role">Founder & Somatic Specialist</span>
+            <p>Devi specializes in somatic healing practices, emotional nervous system regulation, and holistic wellness protocols for caregivers and seniors.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-container">
+      <div class="hero-left">
+        <div class="hero-tag">🧠 {{CATEGORY}}</div>
+        <h1>{{TITLE}}</h1>
+        <p class="hero-subtitle">{{HERO_SUBTITLE}}</p>
+        <div class="hero-meta">
+          <span>✍️ By {{AUTHOR}}</span>
+          <span>🩺 Verified by Editorial Board</span>
+          <span>📅 {{DATE}}</span>
+          <span>⏱ {{READ_TIME}}</span>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-frame">
+          <img alt="{{TITLE}} - Mókshara wellness" height="345" loading="eager" src="{{HERO_IMAGE}}" width="460"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN ARTICLES GRID LAYOUT -->
+  <div class="layout-container">
+    <main>
+      <article>
+        {{CONTENT}}
+        
+        <!-- Helpful Likes Widget -->
+        <div class="helpfulness-widget reveal-scale">
+          <h4>Was this article helpful to you?</h4>
+          <p>We build our guidelines on rigorous scientific research combined with family caregiving realities. Your engagement tells us what helps most.</p>
+          <div class="like-actions">
+            <button aria-label="Like this article" class="like-btn" id="likeBtn">
+              <span class="heart-icon"></span>
+              <span class="like-text">Like Article</span>
+            </button>
+            <span class="like-counter" id="likeCounter">0 people found this helpful</span>
+          </div>
+        </div>
+
+        <!-- FAQ ACCORDION -->
+        <section class="faq-section">
+          <h2>Frequently Asked Questions</h2>
+          <div class="faq-container">
+            {{FAQ_ACCORDION}}
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <!-- STICKY SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-widget author-widget">
+        <h4 class="widget-title">About the Founders</h4>
+        <!-- Founder 1 -->
+        <div style="margin-bottom: 1.5rem; text-align: center;">
+          <div class="author-avatar">
+            <img alt="Jyothi Talari" src="/assets/jyothi.jpeg"/>
+          </div>
+          <h4 class="author-name">Jyothi Talari</h4>
+          <span class="author-title">Founder &amp; Wellness Practitioner</span>
+          <p class="author-bio">Jyothi combines neuroscience research with practical caregiving insights to help families navigate mental wellness, elderly care, and burnout recovery.</p>
+        </div>
+        <div style="height: 1px; background: rgba(0, 128, 128, 0.1); margin: 1.2rem 0;"></div>
+        <!-- Founder 2 -->
+        <div style="text-align: center;">
+          <div class="author-avatar" style="border-color: var(--teal);">
+            <img alt="Devi" src="/assets/devi.jpeg"/>
+          </div>
+          <h4 class="author-name">Devi</h4>
+          <span class="author-title" style="color: var(--teal);">Founder &amp; Somatic Specialist</span>
+          <p class="author-bio">Devi specializes in somatic healing practices, emotional nervous system regulation, and holistic wellness protocols for caregivers and seniors.</p>
+        </div>
+      </div>
+
+      <div class="sidebar-widget">
+        <h4 class="widget-title">Mókshara Mission</h4>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">We build evidence-based, compassionate digital guidelines that guide modern families through the complex emotional and practical landscape of aging parents and mental wellness. Reclaiming family dignity is at the heart of our work.</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-about">
+        <h3>Mókshara</h3>
+        <p>
+          Mókshara is a premium Indian wellness brand specializing in mental wellness, 
+          mindfulness, therapy, and compassionate senior care. Our guides translate clinical 
+          neurobiology into daily pathways of calm and restoration.
+        </p>
+        <p>📧 Email: <a href="mailto:support@mokshara.com" style="color: var(--glowing-teal); text-decoration: none;">support@mokshara.com</a></p>
+      </div>
+      <div class="footer-contact">
+        <h4>Connect &amp; Follow</h4>
+        <p>Follow our founders Devi &amp; Jyothi for daily grounding routines and care strategies:</p>
+        <ul class="social-links">
+          <li><a href="https://www.linkedin.com/in/mokshara--wellness" target="_blank">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/@Mokshara7M" target="_blank">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 Mókshara. All Rights Reserved. For educational and caregiver support purposes only. Not a substitute for medical or clinical therapy advice.
+    </div>
+  </footer>
+
+  <!-- Footer Modal Overlay -->
+  <div class="footer-modal-overlay" id="footerModal" style="display:none;">
+    <div class="footer-modal-card">
+      <button aria-label="Close modal" class="footer-modal-close" id="closeModalBtn">×</button>
+      <div class="footer-modal-body" id="modalContentBody">
+        <!-- Content injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    (function() {
+      // Floating particles background
+      const container = document.getElementById('particles');
+      if (container) {
+        for (let i = 0; i < 20; i++) {
+          const p = document.createElement('div');
+          p.classList.add('particle');
+          p.style.left = Math.random() * 100 + '%';
+          p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+          p.style.animationDelay = (Math.random() * 8) + 's';
+          p.style.width = p.style.height = (Math.random() * 3 + 1) + 'px';
+          container.appendChild(p);
+        }
+      }
+
+      // FAQ Accordion
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const trigger = item.querySelector('.faq-trigger');
+        const content = item.querySelector('.faq-content');
+        trigger.addEventListener('click', () => {
+          const active = item.classList.contains('active');
+          faqItems.forEach(i => {
+            i.classList.remove('active');
+            i.querySelector('.faq-content').style.maxHeight = null;
+          });
+          if (!active) {
+            item.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+      });
+
+      // Dynamic Like System
+      const blogId = '{{SLUG}}.html';
+      const likeBtn = document.getElementById('likeBtn');
+      const likeCounter = document.getElementById('likeCounter');
+
+      const defaultBase = Math.floor(Math.random() * 30) + 15; // Random starting likes for realism
+      let currentLikes = parseInt(localStorage.getItem('likes_' + blogId)) || defaultBase;
+      let hasLiked = localStorage.getItem('hasLiked_' + blogId) === 'true';
+
+      // Update display
+      likeCounter.textContent = currentLikes + ' people found this helpful';
+      if (hasLiked) {
+        likeBtn.classList.add('liked');
+        likeBtn.querySelector('.like-text').textContent = 'Liked';
+      }
+
+      likeBtn.addEventListener('click', () => {
+        if (!hasLiked) {
+          currentLikes++;
+          hasLiked = true;
+          localStorage.setItem('likes_' + blogId, currentLikes);
+          localStorage.setItem('hasLiked_' + blogId, 'true');
+          likeCounter.textContent = currentLikes + ' people found this helpful';
+          likeBtn.classList.add('liked');
+          likeBtn.querySelector('.like-text').textContent = 'Liked';
+          
+          likeBtn.classList.add('pulse-anim');
+          setTimeout(() => likeBtn.classList.remove('pulse-anim'), 600);
+        } else {
+          currentLikes--;
+          hasLiked = false;
+          localStorage.setItem('likes_' + blogId, currentLikes);
+          localStorage.setItem('hasLiked_' + blogId, 'false');
+          likeCounter.textContent = currentLikes + ' people found this helpful';
+          likeBtn.classList.remove('liked');
+          likeBtn.querySelector('.like-text').textContent = 'Like Article';
+        }
+      });
+
+      // Scroll-reveal observer
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal, .reveal-scale').forEach(el => revealObs.observe(el));
+
+      // Nav scroll shadow
+      window.addEventListener('scroll', () => {
+        document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 60);
+      }, { passive: true });
+    })();
+
+    // Modal data for footer
+    const modalData = {
+      about: `
+        <h3>About the Founders</h3>
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
+          <div style="flex: 1; min-width: 240px; text-align: center; background: rgba(0,128,128,0.03); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0,128,128,0.1);">
+            <img src="/assets/jyothi.jpeg" alt="Jyothi Talari" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #D4AF37; object-fit: cover; object-position: center 20% !important; margin-bottom: 0.8rem; display: inline-block;">
+            <h4 style="margin: 0.2rem 0; font-size: 1.2rem; font-weight: 700; color: #000022;">Jyothi Talari</h4>
+            <span style="font-size: 0.72rem; font-weight: 700; color: #008080; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.8rem;">Founder & Wellness Practitioner</span>
+            <p style="font-size: 0.85rem; line-height: 1.5; color: #5a5a75; text-align: left; margin: 0;">Jyothi combines neuroscience research with practical caregiving insights to help families navigate mental wellness, elderly care, and burnout recovery.</p>
+          </div>
+          <div style="flex: 1; min-width: 240px; text-align: center; background: rgba(0,128,128,0.03); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(0,128,128,0.1);">
+            <img src="/assets/devi.jpeg" alt="Devi" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #D4AF37; object-fit: cover; object-position: center 20% !important; margin-bottom: 0.8rem; display: inline-block;">
+            <h4 style="margin: 0.2rem 0; font-size: 1.2rem; font-weight: 700; color: #000022;">Devi</h4>
+            <span style="font-size: 0.72rem; font-weight: 700; color: #008080; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.8rem;">Founder & Somatic Specialist</span>
+            <p style="font-size: 0.85rem; line-height: 1.5; color: #5a5a75; text-align: left; margin: 0;">Devi specializes in somatic healing practices, emotional nervous system regulation, and holistic wellness protocols for caregivers and seniors.</p>
+          </div>
+        </div>
+      `,
+      editorial: `
+        <h3>Editorial Standards</h3>
+        <p>Mókshara upholds absolute scientific and clinical integrity. Every guide, metric, and recovery pathway is cross-checked against peer-reviewed clinical publications from leading institutions like Harvard Health, PubMed, the World Health Organization (WHO), and the AARP Caregiving Alliance.</p>
+      `,
+      privacy: `
+        <h3>Privacy Policy</h3>
+        <p>Your trust is paramount. Mókshara maintains a strict privacy posture. We do not track or store your personal wellness inputs locally or on our servers.</p>
+      `,
+      contact: `
+        <h3>Contact Support</h3>
+        <p>Reach out to us for any questions regarding our wellness journals, somatics guides, or ebook orders:</p>
+        <ul>
+          <li>📧 Email: support@mokshara.com</li>
+          <li>💼 LinkedIn: <a href="https://www.linkedin.com/in/mokshara--wellness" target="_blank" style="color:#008080;">Mókshara Wellness</a></li>
+        </ul>
+      `
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const modalOverlay = document.getElementById('footerModal');
+      const modalBody = document.getElementById('modalContentBody');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+      const navMenuOverlay = document.getElementById('navMenuOverlay');
+      const toggleBtn = document.querySelector('.nav-menu-toggle');
+      const overlayCloseBtn = document.getElementById('overlayCloseBtn');
+      const overlayCloseBtnX = document.getElementById('overlayCloseBtnX');
+
+      const openOverlay = () => {
+        if (navMenuOverlay) {
+          navMenuOverlay.style.display = 'flex';
+          setTimeout(() => navMenuOverlay.classList.add('active'), 10);
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      const closeOverlay = () => {
+        if (navMenuOverlay) {
+          navMenuOverlay.classList.remove('active');
+          setTimeout(() => {
+            navMenuOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+          }, 350);
+        }
+      };
+
+      if (toggleBtn) toggleBtn.addEventListener('click', openOverlay);
+      if (overlayCloseBtn) overlayCloseBtn.addEventListener('click', closeOverlay);
+      if (overlayCloseBtnX) overlayCloseBtnX.addEventListener('click', closeOverlay);
+
+      const closeModal = () => {
+        modalOverlay.classList.remove('active');
+        setTimeout(() => modalOverlay.style.display = 'none', 300);
+      };
+
+      if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+      modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+    });
+  </script>
+</body>
+</html>
